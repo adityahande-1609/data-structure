@@ -4,12 +4,18 @@ struct node{
 	int data;
 	struct node *next;
 };
-void create(){
-	node *n1;
+struct node *head=NULL;
+struct node* create(){
+	struct node *n1;
 	n1=(struct node*)malloc(sizeof(struct node));
 	printf("enter data :");
 	scanf("%d",&n1->data);
 	n1->next=NULL;
+	return n1;
+}
+void insertbeg(){
+	node *n1;
+	n1=create();
 	if (head==NULL){
 		head=n1;
 	}
@@ -44,25 +50,40 @@ void disp(){
     }
 }
 }
-struct node *head=NULL;
+void insertend(){
+	struct node *temp,*n;
+	n=create();
+	if(head==NULL){
+		head=n;
+	}
+	else{
+	temp=head;
+		while(temp->next!=NULL){
+		temp=temp->next;
+	}
+	temp->next=n;
+	}
+}
 int main(){
 	int a;
-	while(1)
-	{
+	while(1){
 		printf("\nenter your choice\n");
-		printf("1.insert in the begining\n2.delete from the begining \n3.display\n4.exit\n");
+		printf("1.insert in the begining\n2.insert at end \n3.display\n4.remove from beging\n5.end");
 		scanf("%d",&a);
 		switch(a){
 			case 1:
-				create();
+				insertbeg();
 				break;
 			case 2:
-				rem();
-				break;
+				insertend();
+			break;
 			case 3:
 				disp();
 				break;
-			case 4:exit(1);
+			case 4:rem();
+				break;
+			
+			case 5:exit(1);
 		}
 	}
 	return 0;
