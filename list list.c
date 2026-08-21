@@ -13,6 +13,25 @@ struct node* create(){
 	n1->next=NULL;
 	return n1;
 }
+void spec(node *n)
+{
+    int a,t=0;
+    node *temp = n;
+    printf("Enter element to search: ");
+    scanf("%d", &a);
+    while (temp != NULL)
+    {
+        if (temp->data == a)
+        {
+            printf("Element found\n");
+            printf("Location: %d\n", t + 1);
+            return;
+        }
+        t++;
+        temp = temp->next;
+	}
+    printf("Element not found");
+}
 void insertbeg(){
 	node *n1;
 	n1=create();
@@ -68,7 +87,7 @@ int main(){
 	int a;
 	while(1){
 		printf("\nenter your choice\n");
-		printf("1.insert in the begining\n2.insert at end \n3.display\n4.remove from beging\n5.end");
+		printf("1.insert in the begining\n2.insert at end\n3.location  \n4.display\n5.remove from beging\n6.end");
 		scanf("%d",&a);
 		switch(a){
 			case 1:
@@ -78,12 +97,14 @@ int main(){
 				insertend();
 			break;
 			case 3:
+				spec(head);
+				break;
+			case 4:
 				disp();
 				break;
-			case 4:rem();
+			case 5:rem();
 				break;
-			
-			case 5:exit(1);
+			case 6:exit(1);
 		}
 	}
 	return 0;
