@@ -83,11 +83,29 @@ void insertend(){
 	temp->next=n;
 	}
 }
+void insertspec(struct node *n){
+	int j;
+	struct node *temp,*node;
+	temp=n;
+	printf("enter the value to insert after: ");
+	scanf("%d",&j);
+	while(temp!=NULL){
+		if(temp->data==j){
+			printf("element found \n");
+			node=create();
+			node->next=temp->next;
+			temp->next=node;
+			return;
+		}
+		temp=temp->next;
+	}
+	
+}
 int main(){
 	int a;
 	while(1){
 		printf("\nenter your choice\n");
-		printf("1.insert in the begining\n2.insert at end\n3.location  \n4.display\n5.remove from beging\n6.end");
+		printf("1.insert in the begining\n2.insert at end\n3.insert location  \n4.location \n5.display\n6.remove from beging\n7.end");
 		scanf("%d",&a);
 		switch(a){
 			case 1:
@@ -97,14 +115,17 @@ int main(){
 				insertend();
 			break;
 			case 3:
-				spec(head);
+				insertspec(head);
 				break;
 			case 4:
+				spec(head);
+				break;
+			case 5:
 				disp();
 				break;
-			case 5:rem();
+			case 6:rem();
 				break;
-			case 6:exit(1);
+			case 7:exit(1);
 		}
 	}
 	return 0;
